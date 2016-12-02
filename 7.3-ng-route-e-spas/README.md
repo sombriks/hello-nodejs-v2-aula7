@@ -319,3 +319,5 @@ knex.migrate.latest().then( () => {
 });
 
 ```
+
+[Voltar](../README.md)
