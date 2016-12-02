@@ -9,7 +9,7 @@
 - Módulo e bootstrap no documento html
 - O que é um controller
 
-## [Definindo serviços Angularjs](7.2-servicos-angular/README.md)
+## [Definindo serviços Angularjs](7.2-servicos-angular-js/README.md)
 
 - 30 minutos
 - serviço $http
