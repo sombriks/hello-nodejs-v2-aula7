@@ -1,6 +1,6 @@
 # Criando serviços do angularjs
 
-- 25 minutos
+- 30 minutos
 - serviço $http
 - abstração de negócio
 

@@ -46,6 +46,7 @@
 - eventos.html:
 
 ```html
+<!-- eventos.html -->
 <h1>Eventos</h1>
 <form ng-submit="ctl.salvaevento()">
   <fieldset>
@@ -67,6 +68,7 @@
 - participantes.html:
 
 ```html
+<!-- participantes.html -->
 <h1>Participantes</h1>
 <form ng-submit="ctl.salvaparticipante()">
   <fieldset>
@@ -86,6 +88,7 @@
 - adicionada a dependência do angular route:
 
 ```javascript
+// modulo.js
 angular.module("anguhello",[
   "ngRoute"
 ]);
@@ -95,6 +98,7 @@ angular.module("anguhello",[
 - controllers.js:
 
 ```javascript
+// controllers.js
 angular.module("anguhello").controller("eventocontroller", function(eventoservice){
 
   this.novo = {};
@@ -139,24 +143,27 @@ angular.module("anguhello").controller("participantescontroller", function(parti
 angular.module("anguhello").config(($routeProvider) => {
 
   $routeProvider.when("/eventos", {
-    controllerAs:"eventocontroller as ctl",
-    templateUrl:"eventos.html"
+    controller:"eventocontroller",
+    templateUrl:"eventos.html",
+    controllerAs:"ctl"
   });
 
-  $routeProvider.when("/participantescontroller", {
-    controllerAs:"participantescontroller as ctl",
-    templateUrl:"participantes.html"
+  $routeProvider.when("/participantes", {
+    controller:"participantescontroller",
+    templateUrl:"participantes.html",
+    controllerAs:"ctl"
   });
 
   $routeProvider.otherwise("/eventos");
 
-})
+});
 
 ```
 
 - services.js:
 
 ```javascript
+// services.js
 angular.module("anguhello").service("eventoservice", function ($http){
 
   this.buscaeventos = () => $http.get("eventos");
@@ -212,16 +219,16 @@ module.exports = knex;
 ```javascript
 // migrations/20161201195512_esquema_do_banco.js
 exports.up = function(knex, Promise) {
-  return knex.schema.createTable("evento" (table) => {
+  return knex.schema.createTable("evento", (table) => {
     table.increments("idevento");
     table.string("dscevento").notNullable();
     table.date("dtevento").notNullable();
-  }).createTable("participante" (table) => {
+  }).createTable("participante", (table) => {
     table.increments("idparticipante");
     table.string("nomeparticipante").notNullable();
-  }).createTable("evento_participante" (table) => {
-    table.integer("idevento").notNullable().references("evento.idevento");
-    table.integer("idparticipante").notNullable().references("participante.idparticipante");
+  }).createTable("evento_participante", (table) => {
+    table.integer("idevento").references("evento.idevento");
+    table.integer("idparticipante").references("participante.idparticipante");
     table.primary(["idevento","idparticipante"]);
   });
 };

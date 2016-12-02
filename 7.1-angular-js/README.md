@@ -1,6 +1,6 @@
 # Introdução ao angularjs
 
-- 30 minutos
+- 20 minutos
 - Por que usar angular
 - Módulo e bootstrap no documento html
 - O que é um controller
